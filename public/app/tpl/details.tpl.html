@@ -1,0 +1,45 @@
+
+<nav>
+	<a href="#/articles" type="button" class="btn btn-info">List</a>
+</nav>
+
+<div class="panel panel-default" ng-init="editable = false">
+
+	<div class="panel-heading">
+
+		<span>
+			<div class="btn-group">
+				<button type="button" ng-class="!editable ? 'active': '' " ng-click="editable=false" class="btn btn-default">View mode</button>
+				<button type="button" ng-class="editable ? 'active': ''" ng-click="editable=true" class="btn btn-default">Edit mode</button>
+			</div>
+		</span>
+
+	</div>
+
+	<div class="panel-body">
+		<form role="form">
+
+			<input type="hidden" class="form-control" id="_id" ng-model="article._id">
+
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input ng-show="editable" type="text" class="form-control" id="name" placeholder="Name" ng-model="article.name">
+				<p ng-show="!editable">{{article.name}}</p>
+			</div>
+
+			<div class="form-group">
+				<label for="name">Desc</label>
+				<textarea ng-show="editable" class="form-control" id="desc" placeholder="Desc" ng-model="article.desc"/>
+				<p ng-show="!editable">{{article.desc}}</p>
+			</div>
+
+			<button ng-click="submit()" ng-show="editable" type="submit" class="btn btn-success">Submit</button>
+		</form>
+
+		<div ng-show="message" class="alert alert-success" role="alert">
+			{{message}}
+		</div>
+
+	</div>
+
+</div>
